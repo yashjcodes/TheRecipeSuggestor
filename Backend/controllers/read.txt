@@ -1,0 +1,5 @@
+business logic like create item,get item listy
+detailed logic for each route 
+Routes = what endd point to hit
+Controllers = what happens after hitting endpoint
+(inshot backend ka code idr aayega)

@@ -1,0 +1,2 @@
+Defime mongoose schema in detail create a seperate js file for each schema
+Eg: User,Item
