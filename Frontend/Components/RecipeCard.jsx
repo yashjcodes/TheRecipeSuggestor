@@ -1,9 +1,7 @@
 // RecipeCard Component
-import React from 'react';
 import { Clock, Leaf } from 'lucide-react';
 
 function RecipeCard({ recipe, onClick }) {
- // const { Clock, Leaf } = require('lucide-react');
   
   return (
     <div

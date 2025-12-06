@@ -1,6 +1,5 @@
 // RecipeList Component
 import RecipeCard from './RecipeCard';
-import React from 'react';
 function RecipeList({ recipes, onRecipeClick }) {
   if (recipes.length === 0) {
     return (

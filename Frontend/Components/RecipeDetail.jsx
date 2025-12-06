@@ -4,7 +4,6 @@ import { X, Sparkles, Lightbulb, Clock, Leaf } from 'lucide-react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
                                
 function RecipeDetail({ recipe, onClose }) {
-//  const { X, Sparkles, Lightbulb, Clock, Leaf } = require('lucide-react');
   const [aiResponse, setAiResponse] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -24,29 +23,29 @@ function RecipeDetail({ recipe, onClose }) {
     }, 1500);
   };
 
-  const handleAi = () => {
-// Access your API key as an environment variable (see "Smart Tip" below)
-const genAI = new GoogleGenerativeAI("AIzaSyBi_-9jskGkgW7OalyPFDEJoXe10Z2rJG4");
-console.log("ai is  fun");
-
-async function run() {
-  // The Gemini 1.5 models are versatile and work well for most text tasks
-  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-  const prompt = `Give 3 points of the recipe instructions and : ${recipe.name} with ingredients: ${recipe.ingredients.join(', ')} and instructions: ${recipe.instructions}`;
-
+const handleAi = async () => {
+  setLoading(true);
   try {
-    const result = await model.generateContent(prompt);
-    const response = result.response;
-    const text = response.text();
-    console.log("\n",text,"\n");
-          setAiResponse(`${text}`);
+    const res = await fetch("http://localhost:5000/api/generate-recipe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        recipeName: recipe.name,
+        ingredients: recipe.ingredients,
+        instructions: recipe.instructions,
+      }),
+    });
 
+    const data = await res.json();
+    setAiResponse(data.text);
   } catch (error) {
-    console.error("Error generating text:", error);
+    console.error("Error:", error);
   }
-}
+  setLoading(false);
+};
 
-run();}
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -123,7 +122,7 @@ run();}
                 className="flex-1 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all font-medium disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 <Sparkles className="w-5 h-5"  />
-                Get Suggestions
+                Get Recipe 
               </button>
             </div>
 

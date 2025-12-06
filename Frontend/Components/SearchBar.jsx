@@ -1,8 +1,6 @@
 // SearchBar Component
-import React from 'react';
 import { Search, Filter } from 'lucide-react';
 function SearchBar({ searchQuery, onSearchChange, onSearch, onToggleFilters }) {
-  //const { Search, Filter } = require('lucide-react');
   
   return (
     <div className="flex gap-3">
