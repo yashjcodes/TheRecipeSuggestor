@@ -43,6 +43,7 @@ TheRecipeSuggestor/
 │   ├── routes/
 │   │   └── RecipeRoute.js
 │   ├── utils/
+|   |__seed.js
 │   └── ...
 ├── Frontend/
 │   ├── Components/
